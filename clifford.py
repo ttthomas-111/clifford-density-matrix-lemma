@@ -2,6 +2,15 @@ import numpy as np
 import itertools
 from itertools import combinations
 
+def is_psd_matrix(mat, tol=1e-8):
+    if mat.ndim != 2 or mat.shape[0] != mat.shape[1]:
+        return False
+    if not np.allclose(mat, mat.conj().T, atol=tol):
+        return False
+    eigenvalues = np.linalg.eigvalsh(mat).real
+    print(eigenvalues)
+    return np.all(eigenvalues >= -tol)
+
 # Set up a BPT
 def build_BPT(n,a,b,c):
     if n==2:
@@ -72,15 +81,16 @@ def norm(a,b,c):
     return np.sqrt(a*a+b*b+c*c)
 
 def statement(rho_head,result,rho,f):
-    if result[0]==True:
-        f.write("case:\n" + str(rho_head) + ": " + str(result[0]) + "\n")
-        f.write("\n")
-    elif result[0]==False:
-        f.write("case:\n" + str(rho_head) + ": " + str(result[0])+"\n")
-        f.write("The counterexample is:\n")
-        f.write("rho_head:\n"+str(rho_head)+"\n")
-        f.write("rho:\n"+str(rho)+"\n")
-        f.write("\n")
+    if is_psd_matrix(rho):
+        if result[0]==True:
+                f.write("case:\n" + str(rho_head) + ": " + str(result[0]) + "\n")
+                f.write("\n")
+        elif result[0]==False:
+                f.write("case:\n" + str(rho_head) + ": " + str(result[0])+"\n")
+                f.write("The counterexample is:\n")
+                f.write("rho_head:\n"+str(rho_head)+"\n")
+                f.write("rho:\n"+str(rho)+"\n")
+                f.write("\n")
 
 def main(qubit):
     print("start")
