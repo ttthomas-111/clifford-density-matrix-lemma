@@ -30,12 +30,12 @@ First, select the number of qubit in the system in _main.py_
 
 - Windows
 ```bash
-.venv\Scripts\activate
+uv venv .venv\Scripts\activate
 uv run main.py
 ```
 -Macos / Linux
 ```bash
-source .venv/bin/activate
+uv venv source .venv/bin/activate
 uv run main.py
 ```
 
