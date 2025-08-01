@@ -31,11 +31,13 @@ First, select the number of qubit in the system in _main.py_
 - Windows
 ```bash
 uv venv .venv\Scripts\activate
+uv add numpy itertools
 uv run main.py
 ```
 -Macos / Linux
 ```bash
 uv venv source .venv/bin/activate
+uv add numpy itertools
 uv run main.py
 ```
 
