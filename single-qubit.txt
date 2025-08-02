@@ -1,7 +1,0 @@
-case [ 1 -1  0  0]: True
-case [ 1  0 -1  0]: True
-case [ 1  0  0 -1]: True
-case [1 0 0 0]: True
-case [1 0 0 1]: True
-case [1 0 1 0]: True
-case [1 1 0 0]: True
